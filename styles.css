@@ -307,33 +307,6 @@ body {
   transform: translateY(0) scale(0.98);
 }
 
-.spin-again {
-  display: none;
-}
-
-.spin-toggle:checked ~ .wheel-stage .wheel {
-  animation: wheel-spin 3.2s cubic-bezier(0.12, 0.72, 0.16, 1) forwards;
-}
-
-.spin-toggle:checked ~ .spin-button .spin-now {
-  display: none;
-}
-
-.spin-toggle:checked ~ .spin-button .spin-again {
-  display: inline;
-}
-
-@keyframes wheel-spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  70% {
-    transform: rotate(1320deg);
-  }
-  100% {
-    transform: rotate(1485deg);
-  }
-}
 
 @media (max-width: 640px) {
   :root {
@@ -380,8 +353,8 @@ body {
 /* 12-value wheel override */
 .wheel {
   background:
-    repeating-conic-gradient(from -15deg, rgba(255,255,255,.78) 0 .65deg, transparent .65deg 30deg),
-    conic-gradient(from -15deg,
+    repeating-conic-gradient(from 0deg, rgba(255,255,255,.78) 0 .65deg, transparent .65deg 30deg),
+    conic-gradient(from 0deg,
       var(--violet-bright) 0deg 30deg,
       var(--magenta-bright) 30deg 60deg,
       var(--violet-deep) 60deg 90deg,
@@ -417,7 +390,7 @@ body {
 }
 
 .result-panel {
-  width: min(260px, 90vw);
+  width: min(330px, 90vw);
   margin: 18px auto 0;
   padding: 14px 18px;
   border: 1px solid rgba(209, 188, 255, 0.22);
@@ -442,8 +415,42 @@ body {
   display: block;
   margin-top: 4px;
   font-family: 'Anybody', system-ui, sans-serif;
-  font-size: 34px;
+  font-size: clamp(26px, 7vw, 34px);
   line-height: 1;
   color: var(--tertiary);
   text-shadow: 0 0 18px rgba(233, 196, 0, 0.3);
+}
+
+
+/* Code label layout */
+.wheel-label {
+  display: inline-grid;
+  place-items: center;
+  gap: 2px;
+  min-width: 54px;
+  line-height: 1;
+}
+
+.label-number {
+  font-size: .82em;
+  opacity: .86;
+}
+
+.label-code {
+  font-size: 1.12em;
+  letter-spacing: .03em;
+}
+
+@media (max-width: 420px) {
+  .wheel-label {
+    min-width: 42px;
+  }
+
+  .label-number {
+    font-size: .72em;
+  }
+
+  .label-code {
+    font-size: .95em;
+  }
 }
